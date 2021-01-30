@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Random">
+    <title>MyRandom</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+    <link rel="manifest" href="{{ start_url }}/manifest.webmanifest">
+    <link rel="apple-touch-icon" href="{{ start_url }}/icons/maskable_icon_x192.png" type="image/png">
+    <link rel="shortcut icon" href="{{ start_url }}/icons/maskable_icon_x192.png" type="image/png">
+    <meta name="theme-color" content="#ffffff" />
+    <script>
+        window.addEventListener("load", () => navigator.serviceWorker.register("{{ start_url }}/sw.js", {
+            scope: "{{ start_url }}/"
+        }));
+    </script>
+</head>
+
+<body>
+    <header class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">MyRandom</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ start_url }}/numbers.html">Числа</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ start_url }}/list.html">Список</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ start_url }}/passwords.html">Пароль</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ start_url }}/names.html">Названия</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ start_url }}/words.html">Слова</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ start_url }}/person.html">Личность</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ start_url }}/about.html">О сайте</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div id="app">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-i18n@8.22.4/dist/vue-i18n.min.js"></script>
+    <script>
+        const i18n = new VueI18n({
+            locale: 'ru',
+            messages: {
+                ru: {
+                    random_line: "Случайная строка",
+                    list: "Список",
+                    how: "Сколько",
+                    generate: "Сгенерировать",
+                    random_number_warn: "Наибольшее и минимальное числа входят в диапазон.",
+                    from: "От",
+                    to: "До",
+                    random_number: "Случайное число",
+                    length: "Длинна",
+                    digits: "Цифры",
+                    uppercase_latin_letters: "Прописные латинские буквы",
+                    small_latin_letters: "Строчные латинские буквы",
+                    special_characters: "Специальные символы",
+                    generator_passwords: "Генератор паролей",
+                    generator_names: "Генератор названий",
+                    error: "Ошибка",
+                    words: "Слова",
+                    random_words: "Случайные слова",
+                    lang: "Язык",
+                    russian: "Русский",
+                    english: "Английский",
+                    age: "Полных лет",
+                    birthdate: "Дата рождения",
+                    company: "Компания",
+                    firstname: "Имя",
+                    lastname: "Фамилия",
+                    nickname: "Ник",
+                    password: "Пароль",
+                    patronymic: "Отчество",
+                    profession: "Профессия",
+                    generator_person: "Генератор личностей",
+                    passwor_requirement: "Требование к паролю",
+                    birthdate_from: "Дата рождения от",
+                    birthdate_to: "Дата рождения до",
+                    use: "Использовать",
+                    sex: "Пол",
+                    a: "Любой",
+                    m: "Мужской",
+                    f: "Женский",
+                    yes: "Да",
+                    no: "Нет",
+                    about_site: "О сайте",
+                    description_items: "MyRandom - это веб приложение, позволяющие получать вам разнообразные случайные данные.;На данные момент доступны такие инструменты, как генерация одного или нескольких целых чисел в диапазоне, выбор одной или нескольких случайных строк из списка, генерация случайных паролей, генерация случайных названий на английском из ключевых слов, генерация случайных английских или русских существительных и генерация случайной информации о человеке на русском языке.;MyRandom - это PWA приложение, то есть оно оптимизировано для работы, а также дает возможность работы сайта без подключения к сети Интернет и возможность установить этот сайт и пользоваться им как обычным приложением (на некоторых браузерах).",
+                    features: "Особенности",
+                    features_items: "Является PWA;Может работать без интернета (после первой загрузки);Может устанавливаться, как обычное приложение (на некоторых браузерах);Имеет большой функционал;Не имеет рекламы",
+                    technologies_used: "Используемые технологии",
+                    technologies_used_items: "HTML5 - Основа любого сайта;Bootstap 5, CSS - Оформление;Vue, JavaScript - Работа сайта, реализованной в нем логики;Vue I18N - Интернализация (будет в будущем);ServiceWorcker - Работа сайта оффлайн;Manifest - Возможность установки сайта, как приложения;Django, Python - Подготовка сайта",
+                    old_browser_support: "Создатель сайта не ставил целью поддержку старых браузеров.",
+                    disclaimer: "Сайт не несет ответственности, ни за что.",
+                    source_code: "Исходный код",
+                },
+            }
+        });
+    </script>
+    {% block script %}
+    {% endblock %}
+</body>
+
+</html>

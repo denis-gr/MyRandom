@@ -1,0 +1,28 @@
+{% extends '_base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1 v-text="$t('about_site')"></h1>
+    <p v-for="i in $t('description_items').split(';')" v-text="i"></p>
+    <h3 v-text="$t('features')"></h3>
+    <ul>
+        <li v-for="i in $t('features_items').split(';')" v-text="i"></li>
+    </ul>
+    <h3 v-text="$t('technologies_used')"></h3>
+    <ul>
+        <li v-for="i in $t('technologies_used_items').split(';')" v-text="i"></li>
+    </ul>
+    <p v-text="$t('old_browser_support')"></p>
+    <p v-text="$t('disclaimer')"></p>
+    <p><a href="" v-text="$t('source_code')"></a></p>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    const vueApp = new Vue({
+        el: "#app",
+        i18n,
+    });
+</script>
+{% endblock %}

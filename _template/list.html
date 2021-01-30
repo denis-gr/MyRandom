@@ -1,0 +1,65 @@
+{% extends '_base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center mb-3" v-text="$t('random_line')"></h1>
+</div>
+<div class="bg-secondary text-white p-4 text-center">
+    <pre class="container text-wrap text-break mb-0" style="font-size: 2rem;" v-text="answer"></pre>
+    <div class="container" v-else v-text="$t('error')"></div>
+</div>
+<div class="container py-3">
+    <div class="mb-3 row">
+        <label for="field-list" class="col-sm-auto col-form-label" v-text="$t('list')"></label>
+        <div class="col-sm">
+            <textarea class="form-control" v-model="list" id="field-list" rows=10></textarea>
+        </div>
+    </div>
+    <div class="mb-3 row justify-content-center">
+        <label for="field-count" class="col-auto col-form-label" v-text="$t('how')"></label>
+        <div class="col-auto">
+            <input type="number" class="form-control" id="field-count" v-model="count">
+        </div>
+    </div>
+    <div class="text-center">
+        <a class="btn btn-primary" v-text="$t('generate')" @click="generate"></a>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    function getRandomIntInclusive(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    };
+
+    function getRandomChoice(array) {
+        return array[getRandomIntInclusive(0, array.length - 1)];
+    };
+
+    function getAnswer(count, list) {
+        return new Array(Number(count)).fill(null).map(() =>
+            getRandomChoice(list.split("\n"))).join("\n");
+    };
+
+    const vueApp = new Vue({
+        el: "#app",
+        i18n,
+        data() {
+            return {
+                answer: "",
+                list: `${this.$t("yes")}\n${this.$t("no")}`,
+                count: 1,
+            }
+        },
+        methods: {
+            generate() {
+                this.answer = getAnswer(this.count, this.list);
+            },
+        }
+    });
+    vueApp.generate();
+</script>
+{% endblock %}
